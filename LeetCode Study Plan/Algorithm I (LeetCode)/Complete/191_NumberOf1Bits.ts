@@ -2,13 +2,9 @@
 //Easy
 
 function hammingWeight(n: number, total = 0): number {
-  console.log(n)
   if (n === 0) return 0
   const divideN = n / 2
 
-  console.log(n)
-
-  //O(log n)
   if (divideN === Math.ceil(divideN)) {
     return hammingWeight(divideN, total)
   } else if (divideN > 0) {
@@ -23,7 +19,7 @@ function hammingWeight(n: number, total = 0): number {
   return total
 }
 
-// console.log(hammingWeight(00000000000000000000000000001011))
-// console.log(hammingWeight(00000000000000000000000010000000))
-// console.log(hammingWeight(00000000000000000000000000000010))
-// console.log(hammingWeight(00000000000000000000000000000000))
+console.log(hammingWeight(00000000000000000000000000001011))
+console.log(hammingWeight(00000000000000000000000010000000))
+console.log(hammingWeight(00000000000000000000000000000010))
+console.log(hammingWeight(00000000000000000000000000000000))
