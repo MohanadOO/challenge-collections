@@ -2,24 +2,17 @@
 //Easy
 
 /**
- * Definition for isBadVersion()
- *
- * @param {integer} version number
- * @return {boolean} whether the version is bad
- * isBadVersion = function(version) {
+ * The knows API is defined in the parent class Relation.
+ * isBadVersion(version: number): boolean {
  *     ...
  * };
  */
 
-/**
- * @param {function} isBadVersion()
- * @return {function}
- */
-
-var solution = function (isBadVersion) {
-  return function (n) {
+function solution(isBadVersion: any) {
+  return (n: number): number => {
     let start = 0
     let end = n
+
     while (start <= end) {
       let middle = Math.floor((start + end + 1) / 2)
       if (isBadVersion(middle)) end = middle - 1
