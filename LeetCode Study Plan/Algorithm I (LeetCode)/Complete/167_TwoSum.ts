@@ -1,23 +1,17 @@
 //https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 //Medium
 
-/**
- * @param {number[]} numbers
- * @param {number} target
- * @return {number[]}
- */
-
-var twoSum = function (numbers, target) {
+function twoSum(numbers: number[], target: number): number[] {
   let start = 0
   let end = numbers.length - 1
+
   for (let i = 0; i < numbers.length; i++) {
-    const sum = numbers[start] + numbers[end]
+    let sum = numbers[start] + numbers[end]
     if (sum === target) return [start + 1, end + 1]
-    else if (sum < target) start++
-    else end--
+    else if (target < sum) end--
+    else start++
   }
 }
-
 
 console.log(
   twoSum(

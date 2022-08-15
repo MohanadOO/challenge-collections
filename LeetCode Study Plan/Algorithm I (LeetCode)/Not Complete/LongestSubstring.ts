@@ -10,11 +10,8 @@ function lengthOfLongestSubstring(s: string): number {
   let subStringLength = 0
 
   s.split('').forEach((letter) => {
-    console.log(letter)
-
     if (!tempArr.includes(letter)) {
       tempArr.push(letter)
-      console.log(tempArr)
     } else if (subStringLength < tempArr.length) {
       subStringLength = tempArr.length
     }
