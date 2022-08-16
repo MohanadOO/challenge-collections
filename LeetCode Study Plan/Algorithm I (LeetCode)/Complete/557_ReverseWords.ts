@@ -30,5 +30,13 @@ var reverseWords2 = function (s) {
   return reverseWordsResult.join(' ')
 }
 
+//One Line Solution
+function reverseWordsOneLine(s: string): string {
+  return s
+    .split(' ')
+    .map((word) => word.split('').reverse().join(''))
+    .join(' ')
+}
+
 console.log(reverseWords("Let's take LeetCode contest"))
 console.log(reverseWords2("Let's take LeetCode contest"))
