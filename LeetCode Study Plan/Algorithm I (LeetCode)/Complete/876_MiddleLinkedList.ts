@@ -14,8 +14,7 @@
  */
 
 //Solution From LeetCode
-
-let middleNode = function (head) {
+function middleNodeLeetCode(head) {
   let A = [head]
   while (A[A.length - 1].next != null) {
     A.push(A[A.length - 1].next)
@@ -23,4 +22,23 @@ let middleNode = function (head) {
   return A[Math.trunc(A.length / 2)]
 }
 
-console.log(middleNode([1, 2, 3, 4, 5]))
+
+function middleNode(head: ListNode | null): ListNode | null {
+  if (head === null) return null
+
+  let middleHead = head
+  let len = 1
+
+  while (head.next) {
+    head = head.next
+    len++
+  }
+
+  let middle = Math.floor(len / 2)
+  while (middle !== 0) {
+    middleHead = middleHead.next
+    middle--
+  }
+
+  return middleHead
+}
