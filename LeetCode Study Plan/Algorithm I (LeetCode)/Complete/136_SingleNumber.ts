@@ -22,6 +22,7 @@ function singleNumber1(nums: number[]): number {
   let unique: number = 0
   for (let i = 0; i < nums.length; i++) {
     unique = unique ^ nums[i]
+    console.log(unique)
   }
 
   return unique
