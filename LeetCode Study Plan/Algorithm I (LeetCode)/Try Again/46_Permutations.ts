@@ -8,13 +8,17 @@ let permute = function (nums: number[]): number[][] {
   return result
 }
 
-function backtrack(nums, result, n = 0) {
+function backtrack(nums: number[], result: number[][], n: number = 0) {
+  console.log(n)
   if (n === nums.length - 1) return result.push(nums.slice(0))
-
   for (let i = n; i < nums.length; i++) {
-    ;[nums[i], nums[n]] = [nums[n], nums[i]]
+    let temp = nums[i]
+    nums[i] = nums[n]
+    nums[n] = temp
     backtrack(nums, result, n + 1)
-    ;[nums[i], nums[n]] = [nums[n], nums[i]]
+    temp = nums[i]
+    nums[i] = nums[n]
+    nums[n] = temp
   }
 }
 
