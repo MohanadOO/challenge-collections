@@ -6,22 +6,22 @@ function repeatedSubstringPattern(s: string): boolean {
   return usingSliceAndRepeat(s)
 }
 
-function usingNestedForLoop(s: string): boolean{
-    if (s.length <= 1) return false
-    for (let i = 0; i < s.length / 2; i++) {
-      let count = i + 1
-      if (s.length % count != 0) continue
+function usingNestedForLoop(s: string):boolean {
+  if (s.length <= 1) return false
+  for (let i = 0; i < s.length / 2; i++) {
+    let count = i + 1
+    if (s.length % count != 0) continue
 
-      let num_repeat = s.length / count
-      let substring = s.substring(0, count)
-      let result: string[] = []
+    let num_repeat = s.length / count
+    let substring = s.substring(0, count)
+    let result: string[] = []
 
-      for (let j = 0; j < num_repeat; j++) {
-        result.push(substring)
-      }
-      if (result.join('') === s) return true
+    for (let j = 0; j < num_repeat; j++) {
+      result.push(substring)
     }
-    return false
+    if (result.join('') === s) return true
+  }
+  return false
 }
 
 function usingSliceAndRepeat(s: string): boolean {
@@ -34,7 +34,6 @@ function usingSliceAndRepeat(s: string): boolean {
 
   return false
 }
-
 
 console.log(repeatedSubstringPattern('abab'))
 console.log(repeatedSubstringPattern('a'))
