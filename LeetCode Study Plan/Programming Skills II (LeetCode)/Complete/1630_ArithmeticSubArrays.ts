@@ -11,19 +11,15 @@ function checkArithmeticSubarrays(
   for (let i = 0; i < l.length; i++) {
     const sortArithmetic = nums.slice(l[i], r[i] + 1).sort((a, b) => a - b)
     const len = sortArithmetic.length
-    let pattern: null | number = sortArithmetic[1] - sortArithmetic[0]
+    let pattern: number = sortArithmetic[1] - sortArithmetic[0]
 
     for (let j = 2; j < len; j++) {
       if (sortArithmetic[j] - sortArithmetic[j - 1] !== pattern) {
         result.push(false)
         break
       }
-      if (j === len - 1) result.push(true)
     }
-
-    if (len <= 2) result.push(true)
-
-    pattern = null
+    if (result[i] === undefined || len <= 2) result.push(true) 
   }
 
   return result
