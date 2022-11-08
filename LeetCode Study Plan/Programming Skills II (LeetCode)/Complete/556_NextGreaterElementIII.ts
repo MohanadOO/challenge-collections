@@ -16,7 +16,9 @@ function nextGreaterElement(n: number): number {
 
   for (let i = arr.length - 1; i > pivot; i--) {
     if (arr[i] > arr[pivot]) {
-      ;[arr[pivot], arr[i]] = [arr[i], arr[pivot]]
+      const temp = arr[pivot]
+      arr[pivot] = arr[i]
+      arr[i] = temp
       break
     }
   }
@@ -34,5 +36,3 @@ console.log(nextGreaterElement(12))
 console.log(nextGreaterElement(534976))
 console.log(nextGreaterElement(230241))
 console.log(nextGreaterElement(21))
-console.log(nextGreaterElement(21))
-
