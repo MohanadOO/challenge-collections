@@ -27,34 +27,30 @@ function addTwoNumbers(
   let sum = 0
   let carry = 0
 
-  while (l1 !== null || l2 !== null || sum > 0) {
+  while (l1 !== null || l2 !== null || carry !== 0) {
+    sum = 0
+    sum += carry
     if (l1 !== null) {
       sum += l1.val
       l1 = l1.next
     }
-
     if (l2 !== null) {
       sum += l2.val
-      l1 = l2.next
+      l2 = l2.next
     }
 
-    if (sum >= 10) {
-      carry = 1
-      sum = sum - 10
-    }
+    carry = Math.floor(sum / 10)
+    sum = sum % 10
 
     result.next = new ListNode(sum)
     result = result.next
-
-    sum = carry
-    carry = 0
   }
 
   return current.next
 }
 
 //This Solution Works
-function addTwoNumbers(
+function addTwoNumbers1(
   l1: ListNode | null,
   l2: ListNode | null,
   carryOver: number = 0
@@ -66,7 +62,7 @@ function addTwoNumbers(
   const currentSum = (l1?.val || 0) + (l2?.val || 0) + carryOver
   return new ListNode(
     currentSum % 10,
-    addTwoNumbers(
+    addTwoNumbers1(
       l1?.next || null,
       l2?.next || null,
       (currentSum / 10) >> 0 // slightly faster than Math.floor(currentSum/10)

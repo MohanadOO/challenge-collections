@@ -17,7 +17,6 @@ function addTwoNumbers(
   l1: ListNode | null,
   l2: ListNode | null
 ): ListNode | null {
-
   let resultList: number[][] = [[], []]
 
   while (l1 || l2) {
@@ -33,12 +32,11 @@ function addTwoNumbers(
 
   let result = new ListNode(0)
 
-
-  while(resultList[0].length || resultList[1].length){
-    let sum = 0;
+  while (resultList[0].length || resultList[1].length) {
+    let sum = 0
     if (resultList[0].length) sum += resultList[0].pop()
     if (resultList[1].length) sum += resultList[1].pop()
-    
+
     sum += result.val
     result.val = sum % 10
 
@@ -47,6 +45,5 @@ function addTwoNumbers(
     result = head
   }
 
-
-  return (result.val === 0) ? result.next : result
+  return result.val === 0 ? result.next : result
 }
