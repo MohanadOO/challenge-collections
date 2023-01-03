@@ -1,46 +1,45 @@
 //https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/?envType=study-plan&id=binary-search-i
 
-function kWeakestRows(mat: number[][], k: number): number[] {
-  //   return kWeakestRowsBinarySearch(mat, k)
-  return kWeakestRowsSimpleSolution(mat, k)
+function kWeakestRows(mat: number[][], k: number): number[][] {
+  return [kWeakestRowsBinarySearch(mat, k), kWeakestRowsSimpleSolution(mat, k)]
 }
 
-// Not Complete (Binary Search)
+// Binary Search
 function kWeakestRowsBinarySearch(mat: number[][], k: number): number[] {
-  let weakToStrong = {}
+  let soldiersInRow = {}
 
   for (let i = 0; i < mat.length; i++) {
-    let soldiers = 0
+    const row = mat[i]
+
     let start = 0
-    let end = mat[i].length - 1
+    let end = row.length - 1
 
     while (start <= end) {
-      const middle = start + Math.floor((end - start) / 2)
-      const curr = mat[i][middle]
-      const next = mat[i][middle + 1]
-      const prev = mat[i][middle - 1]
+      const mid = start + Math.floor((end - start) / 2)
 
-      if (curr === 0) end = middle - 1
-      else if (next === undefined || next === 0) {
-        soldiers = next === undefined ? end + 1 : end
-        if (start === end) soldiers++
-        if (end === mat[i].length - 1) soldiers = middle + 1
-        start = end + 1
-      } else if (prev === undefined) {
-        soldiers = end + 1
-        start = end + 1
-      } else start = middle + 1
+      if (
+        row[mid] === 1 &&
+        (row[mid + 1] === undefined || row[mid + 1] === 0)
+      ) {
+        end = mid
+        break
+      }
+
+      if (row[mid] === 1) start = mid + 1
+      else end = mid - 1
     }
-    if (weakToStrong[soldiers] === undefined) weakToStrong[soldiers] = [i]
-    else weakToStrong[soldiers].push(i)
-  }
 
-  const rows: number[] = []
-  const values = Object.values(weakToStrong).flat() as number[]
-  for (let z = 0; z < k; z++) {
-    rows.push(values[z])
+    soldiersInRow[i] = end + 1
   }
-  return rows
+  const sortRows = Object.entries(soldiersInRow).sort((a, b): any => {
+    const [indexA, soldierA] = a as [string, number]
+    const [indexB, soldierB] = b as [string, number]
+
+    if (soldierA < soldierB) return -1
+    else if (soldierA > soldierB) return 1
+    else 0
+  })
+  return sortRows.map((value) => Number(value[0])).slice(0, k)
 }
 
 //https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/solutions/496819/javascript-simple-solution/?envType=study-plan&id=binary-search-i&languageTags=javascript
