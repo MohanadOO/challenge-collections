@@ -1,6 +1,7 @@
 //https://leetcode.com/problems/reducing-dishes/
 
-function maxSatisfaction(satisfaction: number[]): number {
+// Binary Search
+function maxSatisfactionBinarySearch(satisfaction: number[]): number {
   satisfaction.sort((a, b) => a - b)
   let sum = 0
   let max = 0
@@ -24,6 +25,27 @@ function maxSatisfaction(satisfaction: number[]): number {
   findMax(right + 1)
   return max
 }
+
+function maxSatisfactionGreedy(satisfaction: number[]): number {
+  satisfaction.sort((a, b) => a - b)
+  let sum = 0
+  let max = 0
+
+  let end = satisfaction.length - 1
+
+  function findMax(index: number) {
+    const slice = satisfaction.slice(index)
+    sum = slice.reduce((a, b, i) => a + b * (i + 1), 0)
+    max = Math.max(max, sum)
+  }
+
+  while (end >= 0) {
+    findMax(end)
+    end = end - 1
+  }
+  return max
+}
+
 
 console.log(
   maxSatisfaction([
